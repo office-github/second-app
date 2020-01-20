@@ -1,12 +1,24 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import ReactDOM from 'react-dom'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+function First(prop) {
+    return (
+        <form>
+            <h1 onClick={() => prop.onClick(prop.data)}>Hi {prop.data}</h1>
+        </form>
+    );
+}
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+class Second extends React.Component {
+    handleClick(v) {
+        alert(v);
+    }
+
+    render() {
+        return (<First data="One" onClick={(value) => this.handleClick(value)} />);
+    }
+}
+ReactDOM.render(
+    <Second />,
+    document.getElementById('root')
+);
